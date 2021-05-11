@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PatientForm from "../components/PatientForm";
+// import PatientForm from "../components/PatientForm";
 
 const PatientSignup = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,21 +8,28 @@ const PatientSignup = () => {
   const [phone, setPhone] = useState("");
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-  const [isFormSubmitted, setFormSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
 
   const formSubmit = (event) => {
     event.preventDefault();
-    setFormSubmitted(true);
+
+    console.log("form submitted", {
+      firstName,
+      lastName,
+      email,
+      phone,
+      gender,
+      dateOfBirth,
+    });
+
     setFirstName("");
     setLastName("");
     setEmail("");
     setPhone("");
     setGender("");
     setDateOfBirth("");
-    setFormSubmitted(false);
+    setMessage("Successfully logged your information");
   };
-
-  const patient = { firstName, lastName, email, phone, gender, dateOfBirth };
 
   return (
     <div>
@@ -32,6 +39,7 @@ const PatientSignup = () => {
           <label>first name</label>
           <input
             type="text"
+            value={firstName}
             onChange={(event) => setFirstName(event.target.value)}
           />
         </div>
@@ -39,6 +47,7 @@ const PatientSignup = () => {
           <label>last name</label>
           <input
             type="text"
+            value={lastName}
             onChange={(event) => setLastName(event.target.value)}
           />
         </div>
@@ -46,6 +55,7 @@ const PatientSignup = () => {
           <label>email</label>
           <input
             type="text"
+            value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
@@ -53,6 +63,7 @@ const PatientSignup = () => {
           <label>phone</label>
           <input
             type="text"
+            value={phone}
             onChange={(event) => setPhone(event.target.value)}
           />
         </div>
@@ -67,17 +78,14 @@ const PatientSignup = () => {
           <label>date of birth</label>
           <input
             type="date"
+            value={dateOfBirth}
             onChange={(event) => setDateOfBirth(event.target.value)}
           />
         </div>
         <div>
           <button type="submit">Submit</button>
         </div>
-        {isFormSubmitted && (
-          <div>
-            <PatientForm patient={patient} />
-          </div>
-        )}
+        <p>{message}</p>
       </form>
     </div>
   );
