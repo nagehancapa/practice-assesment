@@ -33,7 +33,7 @@ const PatientSignup = () => {
 
   return (
     <div>
-      <h1>Patient Signup</h1>
+      <h2>Patient Signup</h2>
       <form onSubmit={(event) => formSubmit(event)}>
         <div>
           <label>first name</label>
